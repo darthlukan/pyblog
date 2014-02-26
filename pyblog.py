@@ -28,7 +28,7 @@ time = time.strftime("%d.%m.%Y - %H:%M")
 
 try:
     print(color.Bold + 'Welcome!')
-    print('Use this to add contents to your blog!')
+    print('Use this to add contents to your blog!' + color.End)
     print('The default editor is ' + color.Green + 'nano')
     title = raw_input(color.Bold + 'What is the title of this post? ' + color.End)
     editor = raw_input(color.Bold + 'What is your main editor? [vi/emacs/nano]: ' + color.End)
