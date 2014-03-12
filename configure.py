@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
-#    PyBlog: Simple managed self-hosted blog.   
+#    PyBlog: Simple managed self-hosted blog.
 #    Copyright (C) 2014 anakin | anak1n@funtoo.org
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,46 +16,78 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import subprocess
+import os
 import sys
 import time
 import commands
-import os
+import subprocess
 
 from time import sleep
 
-class color:
-    Blue = '\033[94m'
-    Yellow = '\033[93m'
-    Bold = '\033[1m'
-    End = '\033[0m'
 
-def user():
-    if os.geteuid() != 0:
-        print(color.Bold + color.Yellow + 'PyBlog configuration needs to be run as root! Sorry!' + color.End)
-        sys.exit()
-    else:
-        print(color.Bold + 'You are root continuing!' + color.End)
+color = {
+    'Blue': '\033[94m',
+    'Green': '\033[92m',
+    'Yellow': '\033[93m',
+    'Bold': '\033[1m',
+    'End': '\033[0m'
+}
 
-def blog():
-    blogdir = raw_input(color.Bold + 'What is the main directory of your blog? ex: [/var/www/myblog] ' + color.End)
-    blogtitle = raw_input(color.Bold + 'What is the title of your blog? ex: My Cool Blog' + color.End)
 
-def webserver():
-    apache = commands.getoutput('which apache2')
-    nginx = commands.getoutput('which nginx')
-    lighttpd = commands.getoutput('which lighttpd')
-    print(color.Bold + 'This program relies on a webserver such as Apache, Nginx, or Lighttpd.' + color.End)
-    if nginx != 'which: no nginx in (/sbin:/bin:/usr/sbin:/usr/bin)':
-        print(color.Bold + 'Nginx found, continuing!')
-    elif apache != 'which: no apache2 in (/sbin:/bin:/usr/sbin:/usr/bin)':
-        print('Apache2 found, continuing!')
-    elif lighttpd != 'which: no lighttpd in (/sbin:/bin:/usr/sbin:/usr/bin)':
-        print('Lighttpd found, continuing!')
-    else:
-        print('No webserver found, please install either Apache2, Nginx, or Lighttpd to continue' + color.End)
+def detect_user():
+    if os.geteuid() == 0:
+        print "%s You are root continuing! %s" % (color['Bold'], color['End'])
+        return True
+    print "%s %s PyBlog configuration needs to be run as root! Sorry! %s" % (color['Bold'], color['Yellow'], color['End'])
+    return False
 
-print(color.Bold + 'Welcome to the PyBlog configuration!')
-print(color.Bold + 'Use this to configure your new blog!' + color.End)
+
+def define_blog():
+    blogdir = raw_input("%s What is the main directory of your blog? ex: [/var/www/myblog] %s" % (color['Bold'], color['End']))
+    blogtitle = raw_input("%s What is the title of your blog? ex: My Cool Blog %s " % (color['Bold'], color['End']))
+    return blogdir, blogtitle
+
+
+def detect_webserver():
+    webserver = None
+    servers = {
+        'apache': commands.getoutput('which apache2'),
+        'nginx': commands.getoutput('which nginx'),
+        'lighthttpd': commands.getoutput('which lighttpd')
+    }
+    print "%sThis program relies on a webserver such as Apache, Nginx, or Lighttpd.%s" % (color['Bold'], color['End'])
+
+    for server, val in servers.items():
+        if "which: no" not in val:
+            print "%s%s found, continuing" % (color['Bold'], server)
+            webserver = server
+            break
+        else:
+            print "No webserver found, please install either Apache2, Nginx, or Lighttpd to continue %s" % color['End']
+            continue
+
+    return webserver
+
+
+def main():
+    print "%s Welcome to the PyBlog configuration!" % color['Bold']
+    print "%s Use this to configure your new blog! %s" % (color['Bold'], color['End'])
+
+    run = True
+    while run:
+        webserver = detect_webserver()
+        if not detect_user():
+            break
+        elif webserver is None:
+            break
+        else:
+            blogdir, blogtitle = define_blog()
+            print "User: root, webserver: %s, blogdir: %s, blogtitle: %s" % (webserver, blogdir, blogtitle)
+            # Exit the loop, we don't have enough logic to keep going.
+            run = False
+
+
+if __name__ == '__main__':
+    main()
 
 
