@@ -1,5 +1,7 @@
 # PyBlog:
 
+[![Join the chat at https://gitter.im/darthlukan/pyblog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darthlukan/pyblog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > Author: anak1n <anak1n@funtoo.org>
 > Contributor: Brian Tomlinson <brian.tomlinson@linux.com>
 
