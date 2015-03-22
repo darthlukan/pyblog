@@ -29,8 +29,7 @@ class color:
 time = time.strftime("%d.%m.%Y - %H:%M")
 
 # TODO: This try block is way too big!
-# TODO: Test Commit
-# TODO: Testing Commit
+# TODO: Testing Permissions
 try:
     print(color.Bold + 'Welcome!')
     print('Use this to add contents to your blog!' + color.End)
