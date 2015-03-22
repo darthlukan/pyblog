@@ -2,8 +2,8 @@
 
 [![Join the chat at https://gitter.im/darthlukan/pyblog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darthlukan/pyblog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> Author: anak1n <anak1n@funtoo.org>
-> Contributor: Brian Tomlinson <brian.tomlinson@linux.com>
+- Author: anak1n <anak1n@funtoo.org>
+- Contributor: Brian Tomlinson <brian.tomlinson@linux.com>
 
 > Pyblog is a simple blogging platform for hosting a blog on your own server without Wordpress or other related tools.
 > It attempts to automate the initial setup of your blog by asking a few simple startup questions, such as the name
