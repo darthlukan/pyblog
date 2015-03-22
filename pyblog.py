@@ -28,6 +28,7 @@ class color:
 
 time = time.strftime("%d.%m.%Y - %H:%M")
 
+# TODO: This try block is way too big!
 try:
     print(color.Bold + 'Welcome!')
     print('Use this to add contents to your blog!' + color.End)
@@ -38,6 +39,7 @@ try:
         newtitle = "-".join(title.split())
         os.system(
             'touch ' + blogdir + '/posts/' + newtitle + '.html && touch ' + blogdir + '/perm/' + newtitle + '.php')
+        # TODO: Why do we care about editors?
         if editor == 'vi':
             author = raw_input(color.Bold + 'Who is the author of this post? ' + color.End)
             os.system('vi ' + blogdir + '/posts/tmp.html')
@@ -179,6 +181,7 @@ try:
                 'echo "<?php include(\'' + blogdir + '/html/footer.html\'); ?>" >> ' + blogdir + '/perm/' + title + '.php')
             os.system('rm ' + blogdir + '/posts/tmp.html')
             print(color.Bold + 'Complete! You can view your post at ' + blogurl + '/perm/' + title + '.php' + color.End)
+# TODO: We should catch meaningful exceptions, what about "OSError"?
 except KeyboardInterrupt:
     print(' ')
     sys.exit(0)
