@@ -70,21 +70,7 @@ from time import sleep
 
 
 def main():
-    print "%s Welcome to the PyBlog configuration!" % color['Bold']
-    print "%s Use this to configure your new blog! %s" % (color['Bold'], color['End'])
-
-    run = True
-    while run:
-        webserver = detect_webserver()
-        if not detect_user():
-            break
-        elif webserver is None:
-            break
-        else:
-            blogdir, blogtitle = define_blog()
-            print "User: root, webserver: %s, blogdir: %s, blogtitle: %s" % (webserver, blogdir, blogtitle)
-            # Exit the loop, we don't have enough logic to keep going.
-            run = False
+    pass
 
 
 if __name__ == '__main__':
