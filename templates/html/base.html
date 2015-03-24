@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        {% block head %}
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="blog" class="body">
+            <div id="header">
+            </div>
+            <p class="description">
+            </p>
+            <div id="page">
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            {% block footer %}
+            <p>Run by PyBlog!</p>
+            {% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+body, html {
+    height: 100%;
+}
+
+body {
+    background: #000066;
+    font-family: 'Alef', sans-serif;
+    font-size: 13px;
+}
+
+h2.title {
+    margin-top: 20px;
+    padding: 0px 0px 0px 5px;
+    color: #006699;
+    text-transform: uppercase;
+}
+
+h3.date {
+    margin-top: 0px;
+    padding: 0px 0px 0px 5px;
+    color: #006699;
+    font-size: small;
+}
+
+blockquote {
+    font-style: italic;
+    border: 0px 0px 0px 3px solid #006699;
+}
+
+pre {
+    background: #000;
+    color: #CCC;
+    padding: 2mm;
+    margin-right: 20px;
+    border: 1px solid #999;
+}
+
+/* blog stuff */
+
+#blog {
+    width: 1000px;
+    padding: 0px 30px;
+    padding-top: 15px;
+    background: #FFF;
+    height: auto;
+}
+
+.body {
+    width: 1000px;
+    margin: 0px auto;
+    padding-right: 10px;
+    overflow: hidden;
+    border-top: 1px solid #000;
+}
+
+.clearfix {
+    clear: both;
+}
+
+/* header */
+#header {
+    overflow: hidden;
+    font-size: xx-large;
+    text-transform: uppercase;
+    padding-top: 10px;
+    color: #000;
+}
+
+#header a:link {
+    color: #000;
+    text-decoration: none;
+}
+
+#header a:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+#header a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+#header a:active {
+    color: #000;
+    text-decoration: none;
+}
+
+#author {
+    font-size: small;
+    font-style: italic;
+    border-bottom: 1px solid #000;
+}
+
+p.description {
+    text-align: center;
+    font-size: small;
+    font-style: italic;
+    color: #000;
+}
+
+#page {
+    overflow: hidden;
+    margin: 0px 0px;
+    padding: 20px 0px;
+    border-top: 1px solid #CFCFCF;
+    border-bottom: 1px solid #CFCFCF;
+    width: 940px;
+}
+
+/** CONTENT */
+
+#content {
+    float: center;
+    width: 900px;
+}
+
+#footer {
+    overflow: hidden;
+    padding: 20px 0px 10px 0px;
+}
+
+#footer p {
+
+    text-align: center;
+
+}
+
+
