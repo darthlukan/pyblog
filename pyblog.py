@@ -16,8 +16,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import sys
-import time
+import platform
 
 
 # Perform the following via functions
@@ -29,9 +28,30 @@ import time
 # Dir structure == /var/www/myblog (myblog == title)/posts/name.html || name.php
 # Dir structure Windows == C:\Users\<user>\Public\myblog\posts\name.html || name.php
 
+sysvars = {
+    'linux': {
+        'home': os.getenv('HOME'),
+        'tmp': "{0}/tmp".format(os.getenv('HOME')),
+        'user': os.getlogin()
+    },
+    'windows': {
+        'home': os.getenv('HOME'),
+        'tmp': "{0}{1}{2}{1}".format(os.getenv('HOME'), os.pathsep, 'tmp'),
+        'user': os.getlogin()
+    }
+}
+
 
 def detect_platform():
-    pass
+    system = platform.system().lower()
+    base_config = None
+
+    try:
+        base_config = sysvars[system]
+        base_config['system'] = system
+    except KeyError, e:
+        print "detect_platform caught: {0}".format(e.message)
+    return base_config
 
 
 def get_post_title():
