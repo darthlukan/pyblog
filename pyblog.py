@@ -72,3 +72,10 @@ def populate_php():
 
 def save_files(htmlFile, phpFile):
     pass
+
+
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()
