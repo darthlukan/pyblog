@@ -58,8 +58,22 @@ def get_post_title():
     pass
 
 
-def set_dir_structure():
-    pass
+def set_dir_structure(config):
+    default_root = "{0}/public_html".format(config['home'])
+    desired_root = raw_input(prompt='Full path where blog should be stored[default: {0}]: '.format(default_root))
+
+    try:
+        os.mkdir(desired_root)
+        os.mkdir("{0}{1}templates".format(desired_root, os.pathsep))
+        os.mkdir("{0}{1}js".format(desired_root, os.pathsep))
+        os.mkdir("{0}{1}img".format(desired_root, os.pathsep))
+        os.mkdir("{0}{1}styles".format(desired_root, os.pathsep))
+        root = desired_root
+    except (OSError, IOError, Exception), e:
+        print "Caught: '{0}' while trying to set directory structure!".format(e.message)
+        root = None
+
+    return root
 
 
 def populate_html():
@@ -75,6 +89,12 @@ def save_files(htmlFile, phpFile):
 
 
 def main():
+    config = detect_platform()
+    blog_dir = set_dir_structure(config)
+    if blog_dir is not None:
+        config['blogdir'] = blog_dir
+    else:
+        raise Exception('Unable to set blog directory root. Do you have permission to write to that directory?')
     pass
 
 if __name__ == '__main__':
