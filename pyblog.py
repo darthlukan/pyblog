@@ -17,6 +17,8 @@
 
 import os
 import platform
+import logging
+import getpass
 
 
 # Perform the following via functions
@@ -32,15 +34,19 @@ sysvars = {
     'linux': {
         'home': os.getenv('HOME'),
         'tmp': "{0}/tmp".format(os.getenv('HOME')),
-        'user': os.getlogin()
+        'user': getpass.getuser()
     },
     'windows': {
         'home': os.getenv('HOME'),
         'tmp': "{0}{1}{2}{1}".format(os.getenv('HOME'), os.pathsep, 'tmp'),
-        'user': os.getlogin()
+        'user': getpass.getuser()
     }
 }
 
+logging.basicConfig(filename="Errors.log", level=logging.ERROR)
+logging.basicConfig(filename="Events.log", level=logging.INFO, filemode="w")
+
+# Detect_Platform utilizes OS, Logging, and GetPass Modules to determine compatibility and define system variables
 
 def detect_platform():
     system = platform.system().lower()
@@ -49,8 +55,10 @@ def detect_platform():
     try:
         base_config = sysvars[system]
         base_config['system'] = system
+        logging.info("Pyblog is running on %s" % (system))
     except KeyError, e:
         print "detect_platform caught: {0}".format(e.message)
+        logging.error("Pyblog cannot run on %s" % (system))
     return base_config
 
 
